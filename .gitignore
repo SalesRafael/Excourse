@@ -25,18 +25,24 @@
 !.vscode/extensions.json
 
 # misc
-/.sass-cache
-/connect.lock
-/coverage/*
-/libpeerconnection.log
-npm-debug.log
-testem.log
-/typings
+/angular/.sass-cache
+/angular/connect.lock
+/angular/coverage/*
+/angular/libpeerconnection.log
+
+/angular/npm-debug.log
+/api/npm-debug.log
+
+/angular/testem.log
+/angular/typings
 
 # e2e
-/e2e/*.js
-/e2e/*.map
+/angular/e2e/*.js
+/angular/e2e/*.map
 
 #System Files
-.DS_Store
-Thumbs.db
+/angular/.DS_Store
+/angular/Thumbs.db
+
+/api/.DS_Store
+/api/Thumbs.db
