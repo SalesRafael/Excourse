@@ -24,6 +24,7 @@
     <h3>People</h3>
     <!-- Bootstrap Card -->
     <div [style.margin-right.px]="10" class="card card-block col-md-3" *ngFor="let person of people">
+      {{person | json}}
       <h4 class="card-title">{{person.name}}  {{person.age}}</h4>
     </div>
   </div>

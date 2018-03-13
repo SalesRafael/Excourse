@@ -1,40 +1,36 @@
-// Get dependencies
-const express = require('express');
-const path = require('path');
-const http = require('http');
+const express    = require('express');
+const path       = require('path');
+const http       = require('http');
 const bodyParser = require('body-parser');
+const mongoose   = require('mongoose');
+const config     = require('config');
 
-// Get our API routes
-const api = require('./routes/api');
+const api        = require('./routes/index');
 
-const app = express();
+const app        = express();
+const port       = process.env.PORT || '3000';
 
-// Parsers for POST data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-// Cross Origin middleware
 app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "*")
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")
     next()
-  })
+})
 
-// Set our api routes
+// DATABASE SETUP
+mongoose.connect(config.database.uri);
+const db = mongoose.connection;
+db.once('open', () => console.log("Database connection alive"));
+db.on('error', () => console.error.bind(console, 'Database connection error:'));
+
+app.get('/', function(req, res) {
+  res.send('Welcome to my awesome API!');  
+});
+
 app.use('/', api);
 
-/**
- * Get port from environment and store in Express.
- */
-const port = process.env.PORT || '3000';
 app.set('port', port);
-
-/**
- * Create HTTP server.
- */
 const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 server.listen(port, () => console.log(`API running on localhost:${port}`));
