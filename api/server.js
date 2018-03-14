@@ -21,9 +21,6 @@ app.use(function(req, res, next) {
 
 // DATABASE SETUP
 mongoose.connect(config.database.uri);
-const db = mongoose.connection;
-db.once('open', () => console.log("Database connection alive"));
-db.on('error', () => console.error.bind(console, 'Database connection error:'));
 
 app.get('/', function(req, res) {
   res.send('Welcome to my awesome API!');  

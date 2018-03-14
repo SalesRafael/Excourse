@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  
   title = 'app works!';
 
   // Link to our api, pointing to localhost
@@ -17,25 +18,41 @@ export class AppComponent implements OnInit {
 
   // Declare empty list of people
   people: any[] = [];
+  
+  authentication: String  = 'Not authorized';
 
   constructor(private http: Http) {}
 
   // Angular 2 Life Cycle event when component has been initialized
   ngOnInit() {
-    this.getAllPeople();
+    this.getAllUsers();
   }
 
   // Add one person to the API
-  addPerson(name, age) {
-    this.http.post(`${this.API}/users`, {name, age})
+  addUser(name, email, password) {
+    this.http.post(`${this.API}/users`, {name, email, password})
       .map(res => res.json())
       .subscribe(() => {
-        this.getAllPeople();
+        this.getAllUsers();
       })
   }
-
+  
+  //Login
+  login(email, password) {
+    this.http.post(`${this.API}/users/login/`, {email,password})
+        .map( res => {
+        if (res) {
+            if (res.status === 200) {
+              this.authentication = 'Authorized';            
+            }else{
+              this.authentication = 'Not Authorized';      
+            }
+        }
+      });
+  }
+  
   // Get all users from the API
-  getAllPeople() {
+  getAllUsers() {
     this.http.get(`${this.API}/users`)
       .map(res => res.json())
       .subscribe(people => {
