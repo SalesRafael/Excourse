@@ -1,23 +1,23 @@
 import { Component } from '@angular/core';
-import { AuthenticationService, TokenPayload } from '../authentication.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
+import { User } from '../models/user';
 
 @Component({
-  templateUrl: './login.component.html'
+  selector: 'login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.css']
 })
 export class LoginComponent {
-  credentials: TokenPayload = {
-    cpf: '',
-    password: ''
-  };
-
-  constructor(private auth: AuthenticationService, private router: Router) {}
-
-  login() {
-    this.auth.login(this.credentials).subscribe(() => {
-      this.router.navigateByUrl('/profile');
-    }, (err) => {
-      console.error(err);
-    }); 
+  user: User = new User();
+  constructor(private router: Router, private auth: AuthService) {}
+  onLogin(): void {
+    this.auth.login(this.user)
+    .then((user) => {
+      localStorage.setItem('token', user.json().auth_token);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
   }
 }

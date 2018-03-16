@@ -1,15 +1,15 @@
 var Course    = require('../models/course');
 
 exports.getCourses = function(req,res){
-    Course.find({}, (err, courses) => {
-        if (err) res.status(500).send(error)
+    Course.find({}).populate('disciplines').exec( function (err, courses){
+        if (err) res.status(500).send(err)
         res.status(200).json(courses);
     });
 }
 
 exports.getCourse = function(req,res){
-    Course.findById(req.param.id, (err, courses) => {
-        if (err) res.status(500).send(error)
+    Course.findById(req.params.id).populate('disciplines').exec( function (err, course){
+        if (err) res.status(500).send(err)
         res.status(200).json(courses);
     });
 }

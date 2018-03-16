@@ -1,39 +1,37 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
 import { FormsModule } from '@angular/forms';
-import { RouterModule, Routes } from '@angular/router';
-
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
 import { LoginComponent } from './login/login.component';
-import { HomeComponent } from './home/home.component';
-import { AuthenticationService } from './authentication.service';
-import { AuthGuardService } from './auth-guard.service';
-
-const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuardService] }
-];
+import { AuthService } from './services/auth.service';
+import { EnsureAuthenticated } from './services/ensure-authenticated.service';
+import { LoginRedirect } from './services/login-redirect.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
-    LoginComponent,
-    HomeComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
-    RouterModule.forRoot(routes),
+    FormsModule,
+    RouterModule.forRoot([
+      {
+        path: 'login',
+        component: LoginComponent,
+        canActivate: [LoginRedirect]
+      }
+    ])
   ],
   providers: [
-    AuthenticationService, 
-    AuthGuardService
+    AuthService,
+    EnsureAuthenticated,
+    LoginRedirect
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

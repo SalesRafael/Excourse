@@ -2,14 +2,14 @@ var Teacher    = require('../models/teacher');
 
 exports.getTeachers = function(req,res){
     Teacher.find({}, (err, teachers) => {
-        if (err) res.status(500).send(error)
+        if (err) res.status(500).send(err)
         res.status(200).json(teachers);
     });
 }
 
 exports.getTeacher = function(req,res){
-    Teacher.findById(req.param.id, (err, teachers) => {
-        if (err) res.status(500).send(error)
+    Teacher.findById(req.params.id, (err, teachers) => {
+        if (err) res.status(500).send(err)
         res.status(200).json(teachers);
     });
 }

@@ -1,16 +1,21 @@
 var Enrollment = require('../models/enrollment');
 
 exports.getEnrollments = function (req, res) {
-    Enrollment.find({}, (err, enrollments) => {
-        if (err) res.status(500).send(error)
+    Enrollment.find({}).populate('user').populate('course').populate('period').populate('disciplines').exec(function (err, enrollments) {
+        if (err) res.status(500).send(err)
         res.status(200).json(enrollments);
     });
 }
 
 exports.getEnrollment = function (req, res) {
-    Enrollment.findById(req.param.id, (err, enrollments) => {
-        if (err) res.status(500).send(error)
-        res.status(200).json(enrollments);
+    Enrollment.findById(req.params.id)
+        .populate('user')
+        .populate('course')
+        .populate('period')
+        .populate('disciplines')
+        .exec(function (err, enrollment) {
+        if (err) res.status(500).send(err)
+        res.status(200).json(enrollment);
     });
 }
 

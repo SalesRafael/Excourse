@@ -2,14 +2,14 @@ var Period    = require('../models/period');
 
 exports.getPeriods = function(req,res){
     Period.find({}, (err, periods) => {
-        if (err) res.status(500).send(error)
+        if (err) res.status(500).send(err)
         res.status(200).json(periods);
     });
 }
 
 exports.getPeriod = function(req,res){
-    Period.findById(req.param.id, (err, periods) => {
-        if (err) res.status(500).send(error)
+    Period.findById(req.params.id, (err, periods) => {
+        if (err) res.status(500).send(err)
         res.status(200).json(periods);
     });
 }
