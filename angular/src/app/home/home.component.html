@@ -1,7 +1,37 @@
 <div class="container">
-  
-  <h1>Hello there</h1>
+    <div class="row">
+      <div class="col-md-12">
+          <h1>Home</h1>
+          <hr><br>
+        <div class="col-md-12">
 
-  <p>Won't you please <a routerLink="/login">sign in</a>?</p>
+          <!-- CARD ENROLLMENT -->
+          <div class="card">
+            <h5 class="card-header">Enrolllment - {{enrollment.period.name}} |  {{enrollment.course.name}}</h5>
+            <!-- <div class="card-header"></div> -->
+            <div class="card-body">
+              <h5 class="card-title">Enrollment Disciplines</h5>
+              <table class="table table-bordered table-striped table-hover">
+                <thead>
+                  <tr>
+                    <th scope="col">Discipline</th>
+                    <th scope="col">Difficulty level</th>
+                    <th scope="col">Teacher</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let discipline of enrollment.disciplines">
+                    <td>{{ discipline.name }}</td>
+                    <td>{{ discipline.difficulty }}</td>
+                    <td>{{ discipline.teacher }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- END CARD ENROLLMENT -->
 
-</div>
+        </div>
+      </div>
+    </div>
+  </div>

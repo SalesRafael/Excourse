@@ -1,6 +1,6 @@
 {
   "database": {
     "uri": "mongodb://database/academic",
-    "uri_production":"mongodb+srv://uehara:<ueharaadmin1881!>@cluster0-joqyt.mongodb.net/academic"
+    "uri_production":"mongodb+srv://uehara:ueharaadmin1881%21@cluster0-joqyt.mongodb.net/academic"
   }
 }

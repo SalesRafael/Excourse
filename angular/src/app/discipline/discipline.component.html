@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="row">
+      <div class="col-md-12">
+          <h1>Disciplines</h1>
+          <hr><br>
+        <div class="col-md-12">
+            <!-- ACCORDION -->
+            <div id="accordion">
+              <!-- CARD -->
+              <div class="card" *ngFor="let discipline of disciplines; let i = index" >
+                <div class="card-header" id="{{'heading'+i}}">
+                  <h5 class="mb-0">
+                  <button class="btn btn-link">
+                    {{ discipline.name }}
+                  </button>
+                  </h5>
+                </div>
+              
+                <div id="{{'collapse'+i}}" class="collapse show">
+                  <div class="card-body">
+                      <p class="font-weight-bold">Discipline:</p><p class="font-weight-normal">{{discipline.name}}</p>
+                      <p class="font-weight-bold">Difficulty:</p><p class="font-weight-normal">{{discipline.difficulty}}</p>
+                      <p class="font-weight-bold">Teacher:</p><p class="font-weight-normal">{{discipline.teacher.name}}</p>
+                      <p class="font-weight-bold">Schedule:</p><p class="font-weight-normal">{{discipline.schedule.name}}</p>
+                </div>
+              </div>
+            </div>
+            <br>  
+            <!-- END CARD -->
+          </div>
+          <!-- END ACCORDION -->
+
+        </div>
+      </div>
+    </div>
+  </div>

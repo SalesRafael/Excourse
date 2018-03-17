@@ -6,5 +6,6 @@ router.use('/teachers', require('./teachers'));
 router.use('/courses', require('./courses'));
 router.use('/enrollments', require('./enrollments'));
 router.use('/periods', require('./periods'));
+router.use('/supports', require('./supports'));
 
 module.exports = router;  

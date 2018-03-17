@@ -1,10 +1,15 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+    moduleId: module.id,
+    selector: 'app',
+    templateUrl: 'app.component.html'
 })
-export class AppComponent {
-  title = 'AcademicMean';
+
+export class AppComponent { 
+    user :any = {};
+
+    onInit(){
+        this.user = localStorage.getItem('currentUser');
+    }
 }

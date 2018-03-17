@@ -1,7 +1,6 @@
 var User    = require('../models/user');
 var crypto = require('crypto');
 
-
 exports.getUsers = function(req,res){
     User.find({}, (err, users) => {
         if (err) res.status(500).send(err)
@@ -38,17 +37,20 @@ exports.insertUser = function (req, res){
 }
 
 exports.login = function(req,res){
-    User.findOne({"cpf": req.body.cpf}, (err, user) => {
+    User.findOne({"cpf": req.body.cpf}).populate('course').exec(function (err, user){
         if (err) {
             res.status(500).send(err)
-        }else{    
-            var hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, 'sha512').toString('hex');
-            if (this.hash === hash){
-                res.status(200).json(user);    
+        }else{           
+            if(user){     
+                var hash = crypto.pbkdf2Sync(req.body.password, user.salt, 1000, 64, 'sha512').toString('hex');
+                if (user.hash === hash){
+                    res.status(200).json(user);    
+                }else{
+                    res.status(403).send();    
+                }
             }else{
-                res.status(500);    
+                res.status(403).send();    
             }
         }
-        
     });
 }
