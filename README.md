@@ -11,7 +11,7 @@ Features:
   - Docker
 # Instruções para execução do projeto
   - Realizar o clone do repositório
-  - cd ˜/<PATH>/<TO>/<GIT CLONE>
+  - cd ˜/PATH/TO/GIT_CLONE
   - docker-compose up --build
   - Acessar http://localhost:4200 para visualizar a aplicação Angular
   - Acessar http://localhost:300 para visualizar a API
