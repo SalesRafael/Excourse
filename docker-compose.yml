@@ -10,10 +10,10 @@ services:
     build: api 
     ports:
       - "3000:3000" 
-    links:
-      - database
+    #links:
+    #  - database
 
-  database:
-    image: mongo 
-    ports:
-      - "27017:27017"
+  #database:
+  #  image: mongo 
+  #  ports:
+  #    - "27017:27017"

@@ -4,7 +4,40 @@
           <h1>Historic</h1>
           <hr><br>
         <div class="col-md-12">
-          
+          <!-- ENROLLMENTS -->
+          <!-- {{enrollments | json}} -->
+          <div *ngFor="let enrollment of enrollments">
+            <!-- CARD ENROLLMENT -->
+            <div class="card">
+              <h5 class="card-header">Enrolllment - {{enrollment.period.name}} |  {{enrollment.course.name}}</h5>
+              <!-- <div class="card-header"></div> -->
+              <div class="card-body">
+                <h5 class="card-title">Enrollment Disciplines</h5>
+                <table class="table table-bordered table-striped table-hover">
+                  <thead>
+                    <tr>
+                      <th scope="col">Discipline</th>
+                      <th scope="col">Difficulty level</th>
+                      <th scope="col">Teacher</th>
+                      <th scope="col">Note</th>
+                      <th scope="col">Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let note of enrollment.notes">
+                      <td>{{ note.discipline.name }}</td>
+                      <td>{{ note.discipline.difficulty }}</td>
+                      <td>{{ note.discipline.teacher }}</td>
+                      <td>{{ note.note }}</td>
+                      <td>{{ note.status }}</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- END CARD ENROLLMENT -->
+            </div>
+            <!-- END ENROLLMENTS -->
         </div>
       </div>
     </div>

@@ -20,7 +20,7 @@ app.use(function(req, res, next) {
 })
 
 // DATABASE SETUP
-mongoose.connect(config.database.uri);
+mongoose.connect(config.database.uri_production);
 
 app.get('/', function(req, res) {
   res.send('Welcome to my awesome API!');  

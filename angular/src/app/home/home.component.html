@@ -20,10 +20,10 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let discipline of enrollment.disciplines">
-                    <td>{{ discipline.name }}</td>
-                    <td>{{ discipline.difficulty }}</td>
-                    <td>{{ discipline.teacher }}</td>
+                  <tr *ngFor="let note of enrollment.notes">
+                    <td>{{ note.discipline.name }}</td>
+                    <td>{{ note.discipline.difficulty }}</td>
+                    <td>{{ note.discipline.teacher }}</td>
                   </tr>
                 </tbody>
               </table>
