@@ -14,7 +14,7 @@ Features:
   - cd ˜/PATH/TO/GIT_CLONE
   - docker-compose up --build
   - Acessar http://localhost:4200 para visualizar a aplicação Angular
-  - Acessar http://localhost:300 para visualizar a API
+  - Acessar http://localhost:3000 para visualizar a API
 
 # Database
 Para visualizar a database utilizar o MongoDB Compass e conectar com a url  definida em "uri_production" do arquivo api/config/default.json
