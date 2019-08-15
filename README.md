@@ -1,4 +1,4 @@
-# AcademicMean
+# Excouse Sistema de Gestão de Cursos de Extensão
 Projeto criado com a stack Angular, Mongo, Express e NodeJs
 Features:
   - Login
